@@ -15,5 +15,8 @@
 - 软件：bert4keras>=0.10.8
 - 硬件：博客中的成绩是用一张Titan RTX（24G）跑出来的，如果你显存不够，可以适当降低batch_size，并启用梯度累积。
 
+## 其他
+- 英文GLUE榜单的bert4kears基准：https://github.com/nishiwen1214/GLUE-bert4keras
+
 ## 交流
 QQ交流群：808623966，微信群请加机器人微信号spaces_ac_cn
