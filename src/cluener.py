@@ -5,7 +5,6 @@
 import json
 import numpy as np
 from snippets import *
-from bert4keras.backend import keras
 from bert4keras.backend import multilabel_categorical_crossentropy
 from bert4keras.layers import GlobalPointer
 from bert4keras.snippets import sequence_padding, DataGenerator

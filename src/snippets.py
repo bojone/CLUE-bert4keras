@@ -3,7 +3,7 @@
 # 模型配置文件
 
 import os
-from bert4keras.backend import K
+from bert4keras.backend import keras, K
 from bert4keras.tokenizers import Tokenizer
 from bert4keras.models import build_transformer_model
 from bert4keras.optimizers import AdaFactor
@@ -12,6 +12,7 @@ from bert4keras.optimizers import extend_with_gradient_accumulation
 # 通用参数
 data_path = '/root/clue/datasets/'
 learning_rate = 5e-4
+pooling = 'first'
 
 # 权重目录
 if not os.path.exists('weights'):
@@ -36,6 +37,13 @@ base = build_transformer_model(
 
 # 模型参数
 last_layer = 'Transformer-%s-FeedForward-Norm' % (base.num_hidden_layers - 1)
+
+if pooling == 'first':
+    pooling_layer = keras.layers.Lambda(lambda x: x[:, 0])
+elif pooling == 'avg':
+    pooling_layer = keras.layers.GlobalAveragePooling1D()
+elif pooling == 'max':
+    pooling_layer = keras.layers.GlobalMaxPooling1D()
 
 # 优化器
 AdaFactorG = extend_with_gradient_accumulation(AdaFactor, name='AdaFactorG')

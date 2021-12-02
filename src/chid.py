@@ -6,7 +6,6 @@
 import json, re
 import numpy as np
 from snippets import *
-from bert4keras.backend import keras
 from bert4keras.snippets import sequence_padding, DataGenerator
 from bert4keras.snippets import open
 from scipy.optimize import linear_sum_assignment
@@ -137,7 +136,7 @@ def multichoice_accuracy(y_true, y_pred):
 
 # 构建模型
 output = base.model.get_layer(last_layer).output
-output = keras.layers.Lambda(lambda x: x[:, 0])(output)
+output = pooling_layer(output)
 output = keras.layers.Dense(units=1,
                             kernel_initializer=base.initializer)(output)
 
