@@ -15,7 +15,6 @@ from tqdm import tqdm
 from itertools import groupby
 
 # 基本参数
-num_classes = 119
 maxlen = 512
 stride = 128
 batch_size = 16
